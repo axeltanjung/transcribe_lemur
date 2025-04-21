@@ -1,0 +1,14 @@
+import assemblyai as aai
+
+MEETING_AUDIO_FILE = "meeting_audio.mp3"
+
+transcript = aai.Transcriber().transcribe(MEETING_AUDIO_FILE)
+
+prompt = f"""Analyze this meeting transcript and provice a structured summary of the meeting."""
+
+llm_output = transcript.lemur.task(
+    prompt,
+    final_model=aai.LemurModel.claude3_sonnet
+)
+
+print(llm_output.response)
